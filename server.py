@@ -10,15 +10,12 @@ CORS(app)
 # Charger le modèle depuis un fichier .mat
 mat_data = scipy.io.loadmat('random_forest_model.mat')
 
-# Vérifier les clés du fichier pour voir si 'monModele' est présent
+# Afficher toutes les clés pour mieux comprendre la structure
 print("Clés du fichier .mat:", mat_data.keys())
 
-# Vérifier la structure exacte de l'objet
-if 'monModele' in mat_data:
-    random_forest_model = mat_data['monModele'][0, 0]
-    print("Modèle chargé avec succès.")
-else:
-    print("'monModele' n'est pas présent dans le fichier .mat.")
+# Inspecter le contenu des autres clés
+for key in mat_data.keys():
+    print(f"Contenu de {key} : {mat_data[key]}")
 
 @app.route('/')
 def home():
